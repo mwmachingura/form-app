@@ -4,12 +4,13 @@ import { useState } from "react";
 import sidebarimg from "../public/assets/images/bg-sidebar-desktop.svg";
 import Image from 'next/image';
 import Button from "./components/button";
+import NavItem from "./components/navitem";
 
 const steps = [
-  { id : "Step 1", name : "YOUR INFO"},
-  { id : "Step 2", name : "SELECT PLAN"},
-  { id : "Step 3", name : "ADD-ONS"},
-  { id : "Step 4", name : "SUMMARY"},
+  { id : "STEP 1", name : "YOUR INFO"},
+  { id : "STEP 2", name : "SELECT PLAN"},
+  { id : "STEP 3", name : "ADD-ONS"},
+  { id : "STEP 4", name : "SUMMARY"},
 ]
 
 export default function Home() {
@@ -34,42 +35,9 @@ export default function Home() {
         <div className="relative h-19/20 w-2/5 rounded-2xl ml-4 overflow-hidden -mr-6">
           <Image src={sidebarimg} alt="sidebar-bg" className="w-auto h-full  object-cover -z-1 absolute"/>
           <div className="absolute w-full h-full z-1 flex flex-col pt-5 justify-start">
-            <div className="flex w-4/5 items-center py-5">
-              <div className="rounded-full h-8 aspect-square bg-Lightblue flex justify-evenly items-center mx-4">
-                <p className="text-base text-Marineblue font-medium">1</p>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-white font-normal text-sm">STEP 1</p>
-                <h1 className="text-white font-bold">YOUR INFO</h1>
-              </div>
-            </div>
-            <div className="flex w-4/5 items-center py-5">
-              <div className="rounded-full h-8 aspect-square border border-white flex justify-evenly items-center mx-4">
-                <p className="text-base text-white font-medium">2</p>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-white font-normal text-sm">STEP 2</p>
-                <h1 className="text-white font-bold">SELECT PLAN</h1>
-              </div>
-            </div>
-            <div className="flex w-4/5 items-center py-5">
-              <div className="rounded-full h-8 aspect-square border border-white flex justify-evenly items-center mx-4">
-                <p className="text-base text-white font-medium">3</p>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-white font-normal text-sm">STEP 3</p>
-                <h1 className="text-white font-bold">ADD-ONS</h1>
-              </div>
-            </div>
-            <div className="flex w-4/5 items-center py-5">
-              <div className="rounded-full h-8 aspect-square border border-white flex justify-evenly items-center mx-4">
-                <p className="text-base text-white font-medium">4</p>
-              </div>
-              <div className="flex flex-col">
-                <p className="text-white font-normal text-sm">STEP 4</p>
-                <h1 className="text-white font-bold">SUMMARY</h1>
-              </div>
-            </div>
+            {steps.map((step, index) => (
+              <NavItem key={index} data={ step } raw={index} active={currentStep} />
+            ))}
           </div>
         </div>
         <div className="h-19/20 w-3/5 pt-8 px-16">
@@ -84,9 +52,9 @@ export default function Home() {
                 <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <div className="flex w-full justify-between items-center mt-6 -mr-2">
-                  <Button data={ prev } text={`Go Back`} />
-                  <Button data={ next } text={`Next`}  />
+                <div className="flex w-full justify-between items-center">
+                  <Button data={prev} text={`Go Back`} raw={currentStep} />
+                  <Button data={next} text={`Next`}  raw={currentStep} />
                 </div>
               </>
             )}
@@ -101,8 +69,8 @@ export default function Home() {
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2">
-                  <Button data={ prev } text={`Go Back`} />
-                  <Button data={ next } text={`Next`}  />
+                  <Button data={ prev } text={`Go Back`} raw={currentStep}/>
+                  <Button data={ next } text={`Next`}  raw={currentStep}/>
                 </div>
               </>
             )}
@@ -117,8 +85,8 @@ export default function Home() {
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2">
-                  <Button data={ prev } text={`Go Back`} />
-                  <Button data={ next } text={`Next`}  />
+                  <Button data={ prev } text={`Go Back`} raw={currentStep} />
+                  <Button data={ next } text={`Next`} raw={currentStep} />
                 </div>
               </>
             )}
@@ -133,8 +101,8 @@ export default function Home() {
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2">
-                  <Button data={ prev } text={`Go Back`} />
-                  <Button data={ next } text={`Next`}  />
+                  <Button data={ prev } text={`Go Back`} raw={currentStep} />
+                  <Button data={ next } text={`Next`}  raw={currentStep} />
                 </div>
               </>
             )}            

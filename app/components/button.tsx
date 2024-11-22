@@ -1,13 +1,34 @@
 "use client"
 
-import React from 'react'
+import React, { useState } from 'react'
 
-const Button = ({ data, text }) => {
-  return (
-    <button type='button' onClick={data} 
-    className={`${text === "Next" ? 
-        "py-3 px-2 bg-Marineblue w-24 rounded-xl text-white text-base font-medium relative" : "text-Coolgray text-base font-medium"}`}>{text}</button>
-  )
+
+const Button = ({ data, text, raw }) => {
+
+    let hidden = ""
+    let buttonText = ""
+
+    if (raw === 0 && text === "Go Back") {
+        hidden = "invisible text-Coolgray text-base font-medium"
+    }
+    else if ( text === "Next" ) {
+        hidden = "py-3 px-2 bg-Marineblue w-24 rounded-xl text-white text-base font-medium"
+    }
+    else {
+        hidden = "text-Coolgray text-base font-medium py-3 px-2  w-24 rounded-xl"
+    }
+
+    if (raw === 3 && text === "Next") {
+        buttonText = "Submit"
+    }
+
+    else {
+        buttonText = text
+    }
+    
+    return (
+        <button type='button' onClick={data} className={hidden}>{buttonText}</button>
+    )
 }
 
 export default Button
