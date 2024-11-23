@@ -19,7 +19,7 @@ const Button = ({ data, text, raw }) => {
     }
 
     if (raw === 3 && text === "Next") {
-        buttonText = "Submit"
+        buttonText = "Confirm"
     }
 
     else {

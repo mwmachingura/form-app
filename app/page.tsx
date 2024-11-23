@@ -2,6 +2,9 @@
 
 import { useState } from "react";
 import sidebarimg from "../public/assets/images/bg-sidebar-desktop.svg";
+import arcade from "../public/assets/images/icon-arcade.svg";
+import pro from "../public/assets/images/icon-pro.svg";
+import advanced from "../public/assets/images/icon-advanced.svg";
 import Image from 'next/image';
 import Button from "./components/button";
 import NavItem from "./components/navitem";
@@ -41,7 +44,7 @@ export default function Home() {
           </div>
         </div>
         <div className="h-19/20 w-3/5 pt-8 px-16">
-          <form action="" className="flex flex-col pt-6">
+          <form action="" className="flex flex-col pt-6 relative h-full">
             {currentStep === 0 && (
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Personal Info</h1>
@@ -62,13 +65,33 @@ export default function Home() {
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Select your plan</h1>
                 <p className="text-Coolgray text-sm font-normal py-2">You have the option of monthly or yearly billing.</p>
-                <label htmlFor="Name" className="text-Marineblue text-base font-normal py-1">Name</label>
-                <input type="text" name="name" placeholder="John Doe" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Email" className="text-Marineblue text-base font-normal py-1">Email Address</label>
-                <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
-                <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <div className="flex w-full justify-between items-center mt-6 -mr-2">
+                <div className="h-48 w-full flex justify-between items-center py-6">
+                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                    <Image src={arcade} alt="arcade-icon" className="w-8 h-auto" />
+                    <div className="">
+                      <h1 className="text-Marineblue font-medium">Arcade</h1>
+                      <p className="text-base text-Coolgray font-normal">$9/mo</p>
+                    </div>
+                  </div>
+                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                    <Image src={advanced} alt="arcade-icon" className="w-8 h-auto" />
+                    <div className="">
+                      <h1 className="text-Marineblue font-medium">Advanced</h1>
+                      <p className="text-base text-Coolgray font-normal">$12/mo</p>
+                    </div>
+                  </div>
+                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                    <Image src={pro} alt="arcade-icon" className="w-8 h-auto" />
+                    <div className="">
+                      <h1 className="text-Marineblue font-medium">Pro</h1>
+                      <p className="text-base text-Coolgray font-normal">$15/mo</p>
+                    </div>
+                  </div>
+                </div>
+                <div className="w-full h-20 flex justify-center">
+                  <p>Monthly Yearly switch</p>
+                </div>
+                <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep}/>
                   <Button data={ next } text={`Next`}  raw={currentStep}/>
                 </div>
