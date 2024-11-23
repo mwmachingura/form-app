@@ -20,6 +20,8 @@ export default function Home() {
 
   const [ currentStep, setCurrentStep ] = useState(0)
 
+  const [ currentPlan, setCurrentPlan ] = useState("monthly")
+
     const next = () => {
         if (currentStep < steps.length - 1) {
             setCurrentStep(step => step + 1)
@@ -32,19 +34,26 @@ export default function Home() {
         }
     }
 
+    const changePlan = () => {
+      if (currentPlan === "monthly") {
+        setCurrentPlan("yearly")
+      }
+      else setCurrentPlan("monthly")
+    }
+
   return (
     <main className="h-screen w-screen flex justify-center items-center">
       <div className="w-3/5 h-4/5 shadow-lg rounded-2xl flex flex-row bg-white items-center">
         <div className="relative h-19/20 w-2/5 rounded-2xl ml-4 overflow-hidden -mr-6">
           <Image src={sidebarimg} alt="sidebar-bg" className="w-auto h-full  object-cover -z-1 absolute"/>
-          <div className="absolute w-full h-full z-1 flex flex-col pt-5 justify-start">
+          <div className="absolute w-full h-1/3 z-1 flex flex-col py-5 justify-start">
             {steps.map((step, index) => (
               <NavItem key={index} data={ step } raw={index} active={currentStep} />
             ))}
           </div>
         </div>
-        <div className="h-19/20 w-3/5 pt-8 px-16">
-          <form action="" className="flex flex-col pt-6 relative h-full">
+        <div className="h-19/20 w-3/5 pt-6 px-8">
+          <form action="" className="flex flex-col relative h-full">
             {currentStep === 0 && (
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Personal Info</h1>
@@ -55,9 +64,9 @@ export default function Home() {
                 <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <div className="flex w-full justify-between items-center">
+                <div className="flex w-full justify-between items-center absolute bottom-4">
                   <Button data={prev} text={`Go Back`} raw={currentStep} />
-                  <Button data={next} text={`Next`}  raw={currentStep} />
+                  <Button data={next} text={`Next Step`}  raw={currentStep} />
                 </div>
               </>
             )}
@@ -66,21 +75,21 @@ export default function Home() {
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Select your plan</h1>
                 <p className="text-Coolgray text-sm font-normal py-2">You have the option of monthly or yearly billing.</p>
                 <div className="h-48 w-full flex justify-between items-center py-6">
-                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                  <div className="w-32 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
                     <Image src={arcade} alt="arcade-icon" className="w-8 h-auto" />
                     <div className="">
                       <h1 className="text-Marineblue font-medium">Arcade</h1>
                       <p className="text-base text-Coolgray font-normal">$9/mo</p>
                     </div>
                   </div>
-                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                  <div className="w-32 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
                     <Image src={advanced} alt="arcade-icon" className="w-8 h-auto" />
-                    <div className="">
+                    <div className="w-full">
                       <h1 className="text-Marineblue font-medium">Advanced</h1>
                       <p className="text-base text-Coolgray font-normal">$12/mo</p>
                     </div>
                   </div>
-                  <div className="w-1/3 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
+                  <div className="w-32 h-full rounded-lg border border-Lightblue p-4 flex flex-col justify-between">
                     <Image src={pro} alt="arcade-icon" className="w-8 h-auto" />
                     <div className="">
                       <h1 className="text-Marineblue font-medium">Pro</h1>
@@ -88,12 +97,20 @@ export default function Home() {
                     </div>
                   </div>
                 </div>
-                <div className="w-full h-20 flex justify-center">
-                  <p>Monthly Yearly switch</p>
+                <div className="w-full h-10  flex justify-center items-center bg-Magnolia">
+                  <div className="w-2/3 flex items-center justify-center">
+                    <p className="px-1">Monthly</p>
+                    <div className="relative w-12 h-6 flex items-center rounded-full p-1 mx-4 bg-Marineblue">
+                      <div 
+                      className={`absolute bg-white w-4 h-4 rounded-full shadow-md transform transition-transform duration-300 cursor-pointer ${currentPlan === "monthly" ? "left-1" : "right-1"}`}
+                      onClick={changePlan}></div>
+                    </div>
+                    <p className="px-1">Yearly</p>
+                  </div>
                 </div>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep}/>
-                  <Button data={ next } text={`Next`}  raw={currentStep}/>
+                  <Button data={ next } text={`Next Step`}  raw={currentStep}/>
                 </div>
               </>
             )}
@@ -107,9 +124,9 @@ export default function Home() {
                 <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <div className="flex w-full justify-between items-center mt-6 -mr-2">
+                <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep} />
-                  <Button data={ next } text={`Next`} raw={currentStep} />
+                  <Button data={ next } text={`Next Step`} raw={currentStep} />
                 </div>
               </>
             )}
@@ -123,9 +140,9 @@ export default function Home() {
                 <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
                 <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
                 <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <div className="flex w-full justify-between items-center mt-6 -mr-2">
+                <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep} />
-                  <Button data={ next } text={`Next`}  raw={currentStep} />
+                  <Button data={ next } text={`Next Step`}  raw={currentStep} />
                 </div>
               </>
             )}            
