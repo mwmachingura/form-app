@@ -18,8 +18,6 @@ export default function Form() {
         }
     }
 
-    console.log(next)
-
     const prev = () => {
         if (currentStep > 0) {
             setCurrentStep(currentStep => currentStep - 1)    

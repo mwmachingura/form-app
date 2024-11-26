@@ -45,15 +45,15 @@ export default function Home() {
     <main className="h-screen w-screen flex justify-center items-center">
       <div className="w-3/5 h-4/5 shadow-lg rounded-2xl flex flex-row bg-white items-center">
         <div className="relative h-19/20 w-2/5 rounded-2xl ml-4 overflow-hidden -mr-6">
-          <Image src={sidebarimg} alt="sidebar-bg" className="w-auto h-full  object-cover -z-1 absolute"/>
+          <Image src={sidebarimg} alt="sidebar-bg" className="w-auto h-full object-cover -z-1 absolute"/>
           <div className="absolute w-full h-1/3 z-1 flex flex-col py-5 justify-start">
             {steps.map((step, index) => (
               <NavItem key={index} data={ step } raw={index} active={currentStep} />
             ))}
           </div>
         </div>
-        <div className="h-19/20 w-3/5 pt-6 px-8">
-          <form action="" className="flex flex-col relative h-full">
+        <div className="h-19/20 w-3/5 pt-6 px-12">
+          <form action="" className="flex flex-col relative h-full w-full">
             {currentStep === 0 && (
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Personal Info</h1>
@@ -118,12 +118,38 @@ export default function Home() {
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Pick add-ons</h1>
                 <p className="text-Coolgray text-sm font-normal py-2">Add-ons help enhance your gaming experience.</p>
-                <label htmlFor="Name" className="text-Marineblue text-base font-normal py-1">Name</label>
-                <input type="text" name="name" placeholder="John Doe" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Email" className="text-Marineblue text-base font-normal py-1">Email Address</label>
-                <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
-                <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
+                <div className="w-full flex flex-col justify-evenly h-3/5 py-2">
+                  <div className="w-full border border-Purplishblue shadow-md rounded-lg p-4 flex items-center justify-between">
+                    <div className="flex items-center w-3/4">
+                      <input type="checkbox" className="mx-2 p-2" />
+                      <div className="mx-2">
+                        <h1 className="text-Marineblue text-base font-medium">Online service</h1>
+                        <p className="text-Coolgray text-base">Access to multiplayer games</p>
+                      </div>
+                    </div>
+                    <p className="text-Coolgray text-base text-Purplishblue">+$1/mo</p>
+                  </div>
+                  <div className="w-full border border-Purplishblue shadow-md rounded-lg p-4 flex items-center justify-between">
+                    <div className="flex items-center w-3/4">
+                      <input type="checkbox" className="mx-2 p-2" />
+                      <div className="mx-2">
+                        <h1 className="text-Marineblue text-base font-medium">Larger storage</h1>
+                        <p className="text-Coolgray text-base">Extra 1TB of cloud save</p>
+                      </div>
+                    </div>
+                    <p className="text-Coolgray text-base text-Purplishblue">+$2/mo</p>
+                  </div>
+                  <div className="w-full border border-Purplishblue shadow-md rounded-lg p-4 flex items-center justify-between">
+                    <div className="flex items-center w-3/4">
+                      <input type="checkbox" className="mx-2 p-2" />
+                      <div className="mx-2">
+                        <h1 className="text-Marineblue text-base font-medium">Customizable profile</h1>
+                        <p className="text-Coolgray text-base">Custom theme on your profile</p>
+                      </div>
+                    </div>
+                    <p className="text-Coolgray text-base text-Purplishblue">+$2/mo</p>
+                  </div>
+                </div>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep} />
                   <Button data={ next } text={`Next Step`} raw={currentStep} />
@@ -134,12 +160,34 @@ export default function Home() {
               <>
                 <h1 className="text-Marineblue text-3xl font-bold py-2">Finishing up</h1>
                 <p className="text-Coolgray text-sm font-normal py-2">Double-check everything looks OK before confirming</p>
-                <label htmlFor="Name" className="text-Marineblue text-base font-normal py-1">Name</label>
-                <input type="text" name="name" placeholder="John Doe" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Email" className="text-Marineblue text-base font-normal py-1">Email Address</label>
-                <input type="text" name="email" placeholder="johndoe@example.com" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
-                <label htmlFor="Phone Number" className="text-Marineblue text-base font-normal py-1">Phone Number</label>
-                <input type="text" name="phone" placeholder="e.g +1 234 567 890" className="p-2 text-Marineblue border border-Coolgray rounded-xl outline-none mb-4"/>
+                <div className="w-full h-2/3 py-4">
+                  <div className="w-full bg-Alabaster h-3/5 rounded-lg pb-6">
+                    <div className="w-full flex justify-between p-4">
+                      <div className="flex justify-between items-start flex-col">
+                        <p className="font-medium text-Marineblue text-base">Arcade (Monthly)</p>
+                        <p className="text-Purplishblue text-base underline">Change</p>
+                      </div>
+                      <p className="font-bold text-Marineblue text-base">$9/mo</p>
+                    </div>
+                    <div className="px-4 w-full">
+                      <hr></hr>
+                    </div>
+                    <div className="flex flex-col justify-evenly items-start p-4">
+                      <div className="flex justify-between items-center w-full py-2">
+                        <p className="text-base font-light text-Coolgray">Online service</p>
+                        <p className="text-base font-light text-Marineblue">+$1/mo</p>
+                      </div>
+                      <div className="flex justify-between items-center w-full py-2">
+                        <p className="text-base font-light text-Coolgray">Larger storage</p>
+                        <p className="text-base font-light text-Marineblue">+$2/mo</p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center w-full px-4 pt-6">
+                    <p className="text-base font-light text-Coolgray">Total (per month)</p>
+                    <p className="text-base font-bold text-Purplishblue">+$12/mo</p>
+                  </div>
+                </div>
                 <div className="flex w-full justify-between items-center mt-6 -mr-2 absolute bottom-4">
                   <Button data={ prev } text={`Go Back`} raw={currentStep} />
                   <Button data={ next } text={`Next Step`}  raw={currentStep} />
